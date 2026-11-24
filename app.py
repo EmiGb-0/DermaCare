@@ -49,3 +49,31 @@ def paciente_tratamientos():
 def paciente_perfil():
     return render_template("paciente/perfil.html")
 
+#Dermatologo 
+@app.get("/dermatologo")
+def dermatologo_dashboard():
+    return render_template("dermatologo/dashboard.html")
+
+@app.get("/dermatologo/citas")
+def dermatologo_citas():
+    return render_template("dermatologo/citas.html")
+
+@app.get("/dermatologo/pacientes")
+def dermatologo_pacientes():
+    return render_template("dermatologo/pacientes.html")
+
+@app.get("/dermatologo/historial")
+def dermatologo_historial():
+    return render_template("dermatologo/historial.html")
+
+@app.get("/dermatologo/consulta")
+def dermatologo_consulta():
+    return render_template("dermatologo/consulta.html")
+
+@app.get("/dermatologo/diagnosticos")
+def dermatologo_diagnosticos():
+    return render_template("dermatologo/diagnosticos.html")
+
+@app.get("/dermatologo/seguimiento")
+def dermatologo_seguimiento():
+    return render_template("dermatologo/seguimiento.html")
