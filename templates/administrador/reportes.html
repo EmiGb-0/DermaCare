@@ -1,0 +1,81 @@
+{% extends "administrador/base.html" %}
+
+{% block title %}Reportes | DermaCare{% endblock %}
+{% block page_heading %}Reportes{% endblock %}
+{% set active = 'reportes' %}
+
+{% block admin_content %}
+<div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+    <div>
+        <h2 class="text-lg font-semibold text-slate-900">Reportes y estadísticas</h2>
+        <p class="text-sm text-slate-500 mt-1">Indicadores de rendimiento de la clínica.</p>
+    </div>
+    <div class="flex gap-2">
+        <select class="bg-white border border-slate-200 rounded-xl px-3 py-2 text-sm text-slate-600 outline-none">
+            <option>Últimos 30 días</option><option>Este mes</option><option>Este año</option>
+        </select>
+        <button class="bg-teal-600 hover:bg-teal-700 text-white text-sm font-medium px-4 py-2.5 rounded-xl shadow-sm shadow-teal-200">Exportar PDF</button>
+    </div>
+</div>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 mb-6">
+    {% set kpis = [
+        ('Citas atendidas', '486', '+14%'),
+        ('Nuevos pacientes', '64', '+9%'),
+        ('Ingresos', 'S/ 24,580', '+8%'),
+        ('Satisfacción', '96%', '+2%')
+    ] %}
+    {% for label, valor, cambio in kpis %}
+    <div class="rounded-2xl bg-white border border-slate-200 p-5 shadow-sm">
+        <p class="text-sm text-slate-500">{{ label }}</p>
+        <p class="mt-2 text-2xl font-semibold text-slate-900">{{ valor }}</p>
+        <p class="mt-1 text-xs font-medium text-emerald-600">{{ cambio }} vs. período anterior</p>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+    <section class="rounded-2xl bg-white border border-slate-200 p-6 shadow-sm">
+        <h3 class="font-semibold text-slate-900">Citas por especialidad</h3>
+        <p class="text-xs text-slate-400 mt-0.5">Distribución del mes</p>
+        <div class="mt-6 space-y-4">
+            {% set filas = [
+                ('Dermatología clínica', 82, 'bg-teal-500'),
+                ('Dermatología estética', 64, 'bg-sky-500'),
+                ('Dermatología pediátrica', 48, 'bg-violet-500'),
+                ('Cirugía dermatológica', 35, 'bg-amber-500')
+            ] %}
+            {% for nombre, valor, color in filas %}
+            <div>
+                <div class="flex justify-between text-sm mb-1.5">
+                    <span class="text-slate-600">{{ nombre }}</span>
+                    <span class="font-medium text-slate-800">{{ valor }}%</span>
+                </div>
+                <div class="h-2 rounded-full bg-slate-100 overflow-hidden">
+                    <div class="h-full rounded-full {{ color }}" style="width: {{ valor }}%"></div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="rounded-2xl bg-white border border-slate-200 p-6 shadow-sm">
+        <h3 class="font-semibold text-slate-900">Servicios más solicitados</h3>
+        <p class="text-xs text-slate-400 mt-0.5">Ranking de reservas</p>
+        <div class="mt-6 space-y-3">
+            {% set top = [
+                ('Consulta dermatológica', '186 citas'),
+                ('Tratamiento de acné', '124 citas'),
+                ('Láser y luz pulsada', '89 citas'),
+                ('Control pediátrico', '57 citas')
+            ] %}
+            {% for nombre, citas in top %}
+            <div class="flex items-center justify-between p-3 rounded-xl bg-slate-50">
+                <span class="text-sm text-slate-700">{{ nombre }}</span>
+                <span class="text-sm font-semibold text-teal-600">{{ citas }}</span>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+</div>
+{% endblock %}
