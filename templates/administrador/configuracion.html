@@ -1,0 +1,64 @@
+{% extends "administrador/base.html" %}
+
+{% block title %}Configuración | DermaCare{% endblock %}
+{% block page_heading %}Configuración{% endblock %}
+{% set active = 'configuracion' %}
+
+{% block admin_content %}
+<div class="mb-6">
+    <h2 class="text-lg font-semibold text-slate-900">Configuración del sistema</h2>
+    <p class="text-sm text-slate-500 mt-1">Ajusta los datos generales y las preferencias de la clínica.</p>
+</div>
+
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+    <section class="xl:col-span-2 rounded-2xl bg-white border border-slate-200 p-6 shadow-sm">
+        <h3 class="font-semibold text-slate-900">Datos de la clínica</h3>
+        <p class="text-xs text-slate-400 mt-0.5">Información que se muestra en la aplicación</p>
+        <form class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <label class="block sm:col-span-2">
+                <span class="text-sm font-medium text-slate-700">Nombre de la clínica</span>
+                <input value="DermaCare" class="mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm outline-none focus:border-teal-400 focus:bg-white">
+            </label>
+            <label class="block sm:col-span-2">
+                <span class="text-sm font-medium text-slate-700">Dirección</span>
+                <input value="Av. Principal 123, Lima" class="mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm outline-none focus:border-teal-400 focus:bg-white">
+            </label>
+            <label class="block">
+                <span class="text-sm font-medium text-slate-700">Teléfono</span>
+                <input value="(01) 234-5678" class="mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm outline-none focus:border-teal-400 focus:bg-white">
+            </label>
+            <label class="block">
+                <span class="text-sm font-medium text-slate-700">Correo de contacto</span>
+                <input value="contacto@dermacare.com" class="mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm outline-none focus:border-teal-400 focus:bg-white">
+            </label>
+            <div class="sm:col-span-2 flex justify-end gap-3 pt-2">
+                <button type="reset" class="px-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-600 hover:bg-slate-50">Cancelar</button>
+                <button type="submit" class="px-4 py-2.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white text-sm font-medium shadow-sm shadow-teal-200">Guardar cambios</button>
+            </div>
+        </form>
+    </section>
+
+    <section class="rounded-2xl bg-white border border-slate-200 p-6 shadow-sm h-fit">
+        <h3 class="font-semibold text-slate-900">Preferencias</h3>
+        <p class="text-xs text-slate-400 mt-0.5">Notificaciones del panel</p>
+        <div class="mt-6 space-y-4">
+            {% set opciones = [
+                ('Recordatorios de citas', 'Avisar 24 horas antes de cada cita.'),
+                ('Nuevos pacientes', 'Notificar al registrar un paciente.'),
+                ('Reportes semanales', 'Recibir un resumen cada lunes.')
+            ] %}
+            {% for titulo, detalle in opciones %}
+            <div class="flex items-start justify-between gap-4">
+                <div>
+                    <p class="text-sm font-medium text-slate-700">{{ titulo }}</p>
+                    <p class="text-xs text-slate-400 mt-0.5">{{ detalle }}</p>
+                </div>
+                <button class="relative w-11 h-6 rounded-full bg-teal-500 shrink-0" aria-label="{{ titulo }}">
+                    <span class="absolute right-1 top-1 w-4 h-4 rounded-full bg-white shadow"></span>
+                </button>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+</div>
+{% endblock %}

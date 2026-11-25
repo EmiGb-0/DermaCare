@@ -77,3 +77,44 @@ def dermatologo_diagnosticos():
 @app.get("/dermatologo/seguimiento")
 def dermatologo_seguimiento():
     return render_template("dermatologo/seguimiento.html")
+
+# Administrador
+@app.get("/administrador")
+def administrador_dashboard():
+    return render_template("administrador/dashboard.html")
+
+
+@app.get("/administrador/usuarios")
+def administrador_usuarios():
+    return render_template("administrador/usuarios.html")
+
+
+@app.get("/administrador/pacientes")
+def administrador_pacientes():
+    return render_template("administrador/pacientes.html")
+
+
+@app.get("/administrador/dermatologos")
+def administrador_dermatologos():
+    return render_template("administrador/dermatologos.html")
+
+
+@app.get("/administrador/citas")
+def administrador_citas():
+    return render_template("administrador/citas.html")
+
+
+@app.get("/administrador/servicios")
+def administrador_servicios():
+    return render_template("administrador/servicios.html")
+
+
+@app.get("/administrador/reportes")
+def administrador_reportes():
+    return render_template("administrador/reportes.html")
+
+
+@app.get("/administrador/configuracion")
+def administrador_configuracion():
+    return render_template("administrador/configuracion.html")
+

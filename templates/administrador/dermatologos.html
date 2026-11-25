@@ -1,0 +1,47 @@
+{% extends "administrador/base.html" %}
+
+{% block title %}Dermatólogos | DermaCare{% endblock %}
+{% block page_heading %}Dermatólogos{% endblock %}
+{% set active = 'dermatologos' %}
+
+{% block admin_content %}
+<div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+    <div>
+        <h2 class="text-lg font-semibold text-slate-900">Equipo médico</h2>
+        <p class="text-sm text-slate-500 mt-1">Gestiona a los dermatólogos y sus especialidades.</p>
+    </div>
+    <button class="inline-flex items-center gap-2 bg-teal-600 hover:bg-teal-700 text-white text-sm font-medium px-4 py-2.5 rounded-xl shadow-sm shadow-teal-200 transition">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M12 5v14M5 12h14"/></svg>
+        Agregar dermatólogo
+    </button>
+</div>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+    {% set medicos = [
+        ('Ana Torres', 'Dermatología clínica', 'ana.torres@dermacare.com', 'Disponible', 'bg-emerald-500', 'AT'),
+        ('Luis Méndez', 'Dermatología quirúrgica', 'luis.mendez@dermacare.com', 'En consulta', 'bg-amber-500', 'LM'),
+        ('Sofía Vargas', 'Dermatología pediátrica', 'sofia.vargas@dermacare.com', 'Disponible', 'bg-emerald-500', 'SV'),
+        ('Diego Herrera', 'Dermatología estética', 'diego.herrera@dermacare.com', 'Fuera de turno', 'bg-slate-400', 'DH'),
+        ('Elena Ruiz', 'Oncología dermatológica', 'elena.ruiz@dermacare.com', 'Disponible', 'bg-emerald-500', 'ER'),
+        ('Pablo Silva', 'Tricología', 'pablo.silva@dermacare.com', 'En consulta', 'bg-amber-500', 'PS')
+    ] %}
+    {% for nombre, especialidad, correo, estado, color, iniciales in medicos %}
+    <article class="rounded-2xl bg-white border border-slate-200 p-6 shadow-sm hover:shadow-md transition">
+        <div class="flex items-start gap-4">
+            <div class="grid place-items-center w-14 h-14 rounded-2xl bg-teal-100 text-teal-700 text-lg font-bold">{{ iniciales }}</div>
+            <div class="min-w-0">
+                <h3 class="font-semibold text-slate-900 truncate">Dra. {{ nombre }}</h3>
+                <p class="text-sm text-slate-500">{{ especialidad }}</p>
+                <p class="text-xs text-slate-400 truncate mt-1">{{ correo }}</p>
+            </div>
+        </div>
+        <div class="mt-5 flex items-center justify-between border-t border-slate-100 pt-4">
+            <span class="inline-flex items-center gap-2 text-xs font-medium text-slate-600">
+                <span class="w-2 h-2 rounded-full {{ color }}"></span>{{ estado }}
+            </span>
+            <button class="text-sm font-medium text-teal-600 hover:text-teal-700">Ver perfil →</button>
+        </div>
+    </article>
+    {% endfor %}
+</div>
+{% endblock %}
